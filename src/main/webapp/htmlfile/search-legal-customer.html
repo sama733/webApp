@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <link href="cssfile/styleSheet.css" rel="stylesheet">
+    <title>جستجوی مشتری</title>
+</head>
+<body>
+<div class="title">
+    <h1>جستجوی مشتری</h1>
+</div>
+<div id="wrapper">
+    <hr class="hrshow">
+    <div class="content">
+        <div class="box">
+
+            <div class="box-in">
+                <br>
+                <p>لطفا اطلاعات مشتری را وارد نمایید.</p>
+                <br>
+                <form action="SearchLegalCustomerServlet">
+                    <table>
+                        <tr>
+                            <td> شماره مشتری </td>
+                            <td><input type="text" name="customerNumber"></td>
+                        </tr>
+                        <tr>
+                            <td> نام شرکت </td>
+                            <td><input type="text" name="companyName"></td>
+                        </tr>
+                        <tr>
+                            <td> تاریخ ثبت</td>
+                            <td><input type="text" name="dateOfRegistration"></td>
+                        </tr>
+                        <tr>
+                            <td>کد اقتصادی</td>
+                            <td><input type="text" name="economicCode"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" class="button" value="جستجو">
+                    <a href="legal-customer-management.html" class="form">بازگشت به صفحه قبل</a>
+                </form>
+           </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
