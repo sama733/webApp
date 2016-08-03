@@ -1,7 +1,7 @@
 package servlet;
 
-import dataaccesslayer.bean.RealCustomer;
-import logic.CustomerLogic;
+import DAL.RealCustomerCRUD;
+import DAL.bean.RealCustomer;
 import logic.exceptions.AssignCustomerNumberException;
 import logic.exceptions.DateFormatException;
 import logic.exceptions.DuplicateInformationException;
@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static logic.RealCustomerLogic.validateRealCustomer;
+
 public class CreateRealCustomerServlet extends HttpServlet {
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,9 +28,11 @@ public class CreateRealCustomerServlet extends HttpServlet {
         String dateOfBirth = request.getParameter("dateOfBirth");
         String nationalCode = request.getParameter("nationalCode");
 
-        try {
-            RealCustomer realCustomer = CustomerLogic.createCustomer(firstName, lastName, fatherName, dateOfBirth, nationalCode);
 
+        try {
+            validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
+            RealCustomer realCustomer = RealCustomerCRUD.setValuesOfNewRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
+            System.out.println(realCustomer.toString());
         } catch (FieldIsRequiredException e) {
             System.out.println("مقادیر اشتباه وارد شده است");
             e.printStackTrace();
@@ -43,4 +48,5 @@ public class CreateRealCustomerServlet extends HttpServlet {
         }
 
     }
+
 }

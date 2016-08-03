@@ -1,4 +1,4 @@
-package dataaccesslayer.bean;
+package DAL.bean;
 
 public class LegalCustomer extends Customer {
     private Long id;

@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class StaticConnection {
+public class ConnectionUtil {
 
     private static Connection connection = null;
 
-    private StaticConnection() {}
+    private ConnectionUtil() {}
 
     static {
         try {

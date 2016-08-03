@@ -1,4 +1,4 @@
-package dataaccesslayer.bean;
+package DAL.bean;
 
 public class RealCustomer extends Customer {
     private Long id;
@@ -9,17 +9,6 @@ public class RealCustomer extends Customer {
     private String nationalCode;
     private String realCustomerNumber;
 
-//    public RealCustomer(int id, String name, String family, String fatherName, String birthDate, String nationalCode, String realCustomerNumber) {
-//
-//        this.id = id;
-//        this.name = name;
-//        this.family = family;
-//        this.fatherName = fatherName;
-//        this.birthDate = birthDate;
-//        this.nationalCode = nationalCode;
-//        this.realCustomerNumber = realCustomerNumber;
-//    }
-
     public Long getId() {
         return id;
     }
@@ -28,23 +17,12 @@ public class RealCustomer extends Customer {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "RealCustomer{" +
-                "name='" + name + '\'' +
-                ", family='" + family + '\'' +
-                ", fatherName='" + fatherName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                ", nationalCode='" + nationalCode + '\'' +
-                ", realCustomerNumber='" + realCustomerNumber + '\'' +
-                '}';
-    }
-
     public String getRealCustomerNumber() {
         return realCustomerNumber;
     }
 
     public void setRealCustomerNumber(String realCustomerNumber) {
+        super.setCustomerNumber(realCustomerNumber);
         this.realCustomerNumber = realCustomerNumber;
     }
 
@@ -86,5 +64,17 @@ public class RealCustomer extends Customer {
 
     public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
+    }
+
+    @Override
+    public String toString() {
+        return "RealCustomer{" +
+                "name='" + name + '\'' +
+                ", family='" + family + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", nationalCode='" + nationalCode + '\'' +
+                ", realCustomerNumber='" + realCustomerNumber + '\'' +
+                '}';
     }
 }
