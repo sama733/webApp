@@ -1,7 +1,6 @@
 package servlet;
 
 import DAL.bean.RealCustomer;
-import logic.CustomerLogic;
 import logic.RealCustomerLogic;
 
 import javax.servlet.ServletException;
@@ -21,6 +20,6 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String nationalCode = request.getParameter("nationalCode");
         String outputHTML = "";
 
-        ArrayList<RealCustomer> realCustomers = RealCustomerLogic.retrieveRealCustomer(realCustomerNumber, firstName, lastName,nationalCode);
+        ArrayList<RealCustomer> realCustomers = RealCustomerLogic.retrieveRealCustomer(realCustomerNumber, firstName, lastName, nationalCode);
     }
 }
