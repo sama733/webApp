@@ -26,31 +26,37 @@ public class CreateRealCustomerServlet extends HttpServlet {
         String dateOfBirth = request.getParameter("dateOfBirth");
         String nationalCode = request.getParameter("nationalCode");
         String outputHTML = "";
-
+        PrintWriter out = null;
         try {
             RealCustomerLogic.validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
             RealCustomer realCustomer = RealCustomerCRUD.setValuesOfNewRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
-//            System.out.println(realCustomer.toString());
             outputHTML = HTMLGenerator.generate(realCustomer);
 
+
         } catch (FieldIsRequiredException e) {
-            System.out.println("مقادیر اشتباه وارد شده است");
-            e.printStackTrace();
+//            System.out.println("مقادیر اشتباه وارد شده است");
+            outputHTML = HTMLGenerator.generate("لطفا مقادیر را با دقت پر نمایید");
+
+//            e.printStackTrace();
         } catch (DateFormatException e) {
-            System.out.println("تاریخ تولد را بصورت صحیح وارد نمایید");
-            e.printStackTrace();
+//            System.out.println("تاریخ تولد را بصورت صحیح وارد نمایید");
+//            e.printStackTrace();
+            outputHTML = HTMLGenerator.generate("تاریخ تولد را بصورت صحیح وارد نمایید");
         } catch (AssignCustomerNumberException e) {
-            System.out.println("عدم موفقیت در ساخت شماره مشتری");
-            e.printStackTrace();
+//            System.out.println("عدم موفقیت در ساخت شماره مشتری");
+//            e.printStackTrace();
+            outputHTML = HTMLGenerator.generate("عدم موفقیت در ساخت شماره مشتری");
         } catch (DuplicateInformationException e) {
-            System.out.println("مقدار وارد شده موجود می باشد");
-            e.printStackTrace();
+//            System.out.println("مقدار وارد شده موجود می باشد");
+//            e.printStackTrace();
+            outputHTML = HTMLGenerator.generate("مقدار وارد شده موجود می باشد");
         } catch (DataBaseConnectionException e) {
             e.printStackTrace();
+            outputHTML = HTMLGenerator.generate("خطا در اتصال به بانک");
+        } finally {
+            response.setContentType("text/html; charset=UTF-8");
+            out = response.getWriter();
+            out.println(outputHTML);
         }
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println(outputHTML);
     }
-
 }

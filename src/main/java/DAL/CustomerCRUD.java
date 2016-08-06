@@ -28,7 +28,7 @@ public class CustomerCRUD {
         try {
             customerNumber = String.valueOf(System.currentTimeMillis());
             PreparedStatement preparedStatement =
-                    ConnectionUtil.getConnectionUtil().prepareStatement("insert into customer (customernumber) values(?);" , Statement.RETURN_GENERATED_KEYS );
+                    ConnectionUtil.getConnectionUtil().prepareStatement("insert into customer (customernumber) values(?);", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, customerNumber);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -39,4 +39,5 @@ public class CustomerCRUD {
         }
         return customerNumber;
     }
+
 }

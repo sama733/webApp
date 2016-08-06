@@ -1,7 +1,10 @@
 package logic;
 
+import DAL.bean.RealCustomer;
 import logic.exceptions.DateFormatException;
 import logic.exceptions.FieldIsRequiredException;
+
+import java.util.ArrayList;
 
 public class RealCustomerLogic {
 
@@ -24,6 +27,10 @@ public class RealCustomerLogic {
         if (nationalCode.isEmpty() || nationalCode.length() < 10) {
             throw new FieldIsRequiredException("لطفا کد ملی را بطور صحیح وارد نمایید");
         }
+    }
+    public static ArrayList<RealCustomer> retrieveRealCustomer(String realCustomerNumber, String firstName, String lastName, String nationalCode) {
+
+        return null;
     }
 
 }

@@ -4,6 +4,37 @@ package util;
 import DAL.bean.RealCustomer;
 
 public class HTMLGenerator {
+    public static String generate(String message) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<!DOCTYPE html>");
+        stringBuilder.append("<html lang=fa>");
+        stringBuilder.append("<head>");
+        stringBuilder.append("    <meta charset=UTF-8>");
+        stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
+        stringBuilder.append("    <title>خطا در ثبت اطلاعات مشتری</title>");
+        stringBuilder.append("</head>");
+        stringBuilder.append("<body>");
+        stringBuilder.append("<div class=title>");
+        stringBuilder.append("    <h1>خطا در ثبت اطلاعات مشتری</h1>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<div id=wrapper>");
+        stringBuilder.append("    <div class=content>");
+        stringBuilder.append("        <div class=box>");
+        stringBuilder.append("            <div class = box-in >");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                 <h2>خطا!</h2>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                <p>" + message + "</p>");
+        stringBuilder.append("                    <a href= htmlfile/real-customer-management.html class=form>بازگشت به صفحه قبل</a>");
+        stringBuilder.append("            </div>");
+        stringBuilder.append("        </div>");
+        stringBuilder.append("    </div>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("</body>");
+        stringBuilder.append("</html>");
+        return stringBuilder.toString();
+    }
+
     public static String generate(RealCustomer realCustomer) {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -54,7 +85,6 @@ public class HTMLGenerator {
         stringBuilder.append("                    </table>");
         stringBuilder.append("                    <a href= htmlfile/real-customer-management.html class=form>بازگشت به صفحه قبل</a>");
         stringBuilder.append("            </div>");
-        stringBuilder.append("            <div class=box-bottom></div>");
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");
         stringBuilder.append("</div>");
@@ -64,7 +94,4 @@ public class HTMLGenerator {
         return stringBuilder.toString();
     }
 
-    public static String generate(String message) {
-        return null;
-    }
 }
