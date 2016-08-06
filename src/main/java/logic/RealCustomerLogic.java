@@ -5,6 +5,8 @@ import logic.exceptions.FieldIsRequiredException;
 
 public class RealCustomerLogic {
 
+
+
     public static void validateRealCustomer(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode)
             throws FieldIsRequiredException, DateFormatException {
         if (firstName.isEmpty()) {

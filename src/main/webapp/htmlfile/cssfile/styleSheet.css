@@ -2,8 +2,8 @@
 @font-face {
     font-family: farsiFont;
     src:
-            url(cssfile/yekan.otf),
-            url(cssfile/yekan.ttf);
+            url(/cssfile/yekan.otf);
+            url(/cssfile/yekan.ttf);
 }
 
 div {
@@ -100,24 +100,24 @@ body {
     /*margin: 19px auto 0 auto;*/
 /*}*/
 
-/*.column-right {*/
-    /*float: right;*/
-    /*width: 165px;*/
-    /*text-align: center;*/
-    /*color: #FFFFFF;*/
-/*}*/
+.column-right {
+    float: right;
+    width: 165px;
+    text-align: center;
+    color: #FFFFFF;
+}
 
-/*.column-right h3 {*/
-    /*font: normal 1.5em Georgia, "Times New Roman", Times, serif;*/
-    /*margin: 10px 0 7px 0;*/
-    /*letter-spacing: 1px;*/
-/*}*/
+.column-right h3 {
+    font: normal 1.5em Georgia, "Times New Roman", Times, serif;
+    margin: 10px 0 7px 0;
+    letter-spacing: 1px;
+}
 
-/*.column-left {*/
-    /*margin: 0 auto 0 0;*/
-    /*width: 650px;*/
+.column-left {
+    margin: 0 auto 0 0;
+    width: 650px;
 
-/*}*/
+}
 
 
 .box{
@@ -185,19 +185,23 @@ body {
     color: #008080;
 }
 
-/*.result-table*/
-/*{*/
-    /*width: 100%;*/
-/*}*/
-/*.result-table th*/
-/*{*/
-    /*height: 50px;*/
-    /*text-align: right;*/
-    /*vertical-align: middle;*/
-    /*padding: 15px;*/
-    /*border-bottom: 1px solid #ddd;*/
-/*}*/
-/*.result-table td*/
-/*{*/
-    /*border-bottom: 1px solid #ddd;*/
-/*}*/
+.result-table
+{
+    width: 100%;
+}
+.result-table th
+{
+    height: 50px;
+    text-align: right;
+    vertical-align: middle;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.result-table td
+{
+    border-bottom: 1px solid #ddd;
+}
+.box-bottom{
+    background-color:#006666;
+    height: 48px;
+}

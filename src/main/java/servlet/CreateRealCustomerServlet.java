@@ -2,18 +2,16 @@ package servlet;
 
 import DAL.RealCustomerCRUD;
 import DAL.bean.RealCustomer;
-import logic.exceptions.AssignCustomerNumberException;
-import logic.exceptions.DateFormatException;
-import logic.exceptions.DuplicateInformationException;
-import logic.exceptions.FieldIsRequiredException;
+import logic.RealCustomerLogic;
+import logic.exceptions.*;
+import util.HTMLGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import static logic.RealCustomerLogic.validateRealCustomer;
+import java.io.PrintWriter;
 
 public class CreateRealCustomerServlet extends HttpServlet {
 
@@ -27,12 +25,14 @@ public class CreateRealCustomerServlet extends HttpServlet {
         String fatherName = request.getParameter("fatherName");
         String dateOfBirth = request.getParameter("dateOfBirth");
         String nationalCode = request.getParameter("nationalCode");
-
+        String outputHTML = "";
 
         try {
-            validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
+            RealCustomerLogic.validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
             RealCustomer realCustomer = RealCustomerCRUD.setValuesOfNewRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
-            System.out.println(realCustomer.toString());
+//            System.out.println(realCustomer.toString());
+            outputHTML = HTMLGenerator.generate(realCustomer);
+
         } catch (FieldIsRequiredException e) {
             System.out.println("مقادیر اشتباه وارد شده است");
             e.printStackTrace();
@@ -45,8 +45,12 @@ public class CreateRealCustomerServlet extends HttpServlet {
         } catch (DuplicateInformationException e) {
             System.out.println("مقدار وارد شده موجود می باشد");
             e.printStackTrace();
+        } catch (DataBaseConnectionException e) {
+            e.printStackTrace();
         }
-
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println(outputHTML);
     }
 
 }

@@ -21,7 +21,7 @@ public class ConnectionUtil {
             e.printStackTrace();
         }
     }
-    public static Connection getStaticConnection() {
+    public static Connection getConnectionUtil() {
         return connection;
     }
 }

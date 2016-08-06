@@ -11,7 +11,7 @@ public class RealCustomerCRUD {
 
 
     public static RealCustomer setValuesOfNewRealCustomer(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode)
-            throws FieldIsRequiredException, DateFormatException, AssignCustomerNumberException, DuplicateInformationException {
+            throws FieldIsRequiredException, DateFormatException, AssignCustomerNumberException, DuplicateInformationException,DataBaseConnectionException {
         RealCustomer realCustomer = new RealCustomer();
 
         realCustomer.setName(firstName);
@@ -26,11 +26,11 @@ public class RealCustomerCRUD {
 
     public static void createRealCustomer(RealCustomer realCustomer) throws DataBaseConnectionException {
         try {
-            PreparedStatement preparedStatement = ConnectionUtil.getStaticConnection()
+            PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil()
                     .prepareStatement(
                             "INSERT INTO realcustomer( name , family ,fathername,dateofbirth,nationalcode,realcustomernumber)" +
-                                    " VALUES ( ?, ?, ?, ?, ?, ?);");
-//            preparedStatement.setLong(1, realCustomer.getId());
+                                  " VALUES ( ?, ?, ?, ?, ?, ?);");
+
             preparedStatement.setString(1, realCustomer.getName());
             preparedStatement.setString(2, realCustomer.getFamily());
             preparedStatement.setString(3, realCustomer.getFatherName());
