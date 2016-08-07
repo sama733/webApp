@@ -30,29 +30,19 @@ public class CreateRealCustomerServlet extends HttpServlet {
         try {
             RealCustomerLogic.validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
             RealCustomer realCustomer = RealCustomerCRUD.setValuesOfNewRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
-            outputHTML = HTMLGenerator.generate(realCustomer);
-
+            outputHTML = HTMLGenerator.generateRealCustomer(realCustomer);
 
         } catch (FieldIsRequiredException e) {
-//            System.out.println("مقادیر اشتباه وارد شده است");
-            outputHTML = HTMLGenerator.generate("لطفا مقادیر را با دقت پر نمایید");
-
-//            e.printStackTrace();
+            outputHTML = HTMLGenerator.generateRealCustomerError("لطفا مقادیر را با دقت پر نمایید");
         } catch (DateFormatException e) {
-//            System.out.println("تاریخ تولد را بصورت صحیح وارد نمایید");
-//            e.printStackTrace();
-            outputHTML = HTMLGenerator.generate("تاریخ تولد را بصورت صحیح وارد نمایید");
+            outputHTML = HTMLGenerator.generateRealCustomerError("تاریخ تولد را بصورت صحیح وارد نمایید");
         } catch (AssignCustomerNumberException e) {
-//            System.out.println("عدم موفقیت در ساخت شماره مشتری");
-//            e.printStackTrace();
-            outputHTML = HTMLGenerator.generate("عدم موفقیت در ساخت شماره مشتری");
+            outputHTML = HTMLGenerator.generateRealCustomerError("عدم موفقیت در ساخت شماره مشتری");
         } catch (DuplicateInformationException e) {
-//            System.out.println("مقدار وارد شده موجود می باشد");
-//            e.printStackTrace();
-            outputHTML = HTMLGenerator.generate("مقدار وارد شده موجود می باشد");
+            outputHTML = HTMLGenerator.generateRealCustomerError("مقدار وارد شده موجود می باشد");
         } catch (DataBaseConnectionException e) {
             e.printStackTrace();
-            outputHTML = HTMLGenerator.generate("خطا در اتصال به بانک");
+            outputHTML = HTMLGenerator.generateRealCustomerError("خطا در اتصال به بانک");
         } finally {
             response.setContentType("text/html; charset=UTF-8");
             out = response.getWriter();

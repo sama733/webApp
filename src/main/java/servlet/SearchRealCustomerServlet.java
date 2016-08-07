@@ -1,13 +1,15 @@
 package servlet;
 
+import DAL.RealCustomerCRUD;
 import DAL.bean.RealCustomer;
-import logic.RealCustomerLogic;
+import util.HTMLGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class SearchRealCustomerServlet extends HttpServlet {
@@ -20,6 +22,17 @@ public class SearchRealCustomerServlet extends HttpServlet {
         String nationalCode = request.getParameter("nationalCode");
         String outputHTML = "";
 
-        ArrayList<RealCustomer> realCustomers = RealCustomerLogic.retrieveRealCustomer(realCustomerNumber, firstName, lastName, nationalCode);
+
+            ArrayList<RealCustomer> realCustomers = RealCustomerCRUD.retrieveRealCustomer(realCustomerNumber, firstName, lastName, nationalCode);
+            if (realCustomers.size() == 0) {
+                outputHTML = HTMLGenerator.resultOfSearchRealCustomer("مشتری با اطلاعات وارد شده وجود ندارد.");
+            } else {
+                outputHTML = HTMLGenerator.generateRealCustomerResults(realCustomers);
+            }
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println(outputHTML);
+
     }
 }
+

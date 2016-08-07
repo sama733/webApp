@@ -2,7 +2,6 @@ package DAL;
 
 import DAL.bean.RealCustomer;
 import logic.exceptions.AssignCustomerNumberException;
-import logic.exceptions.DataBaseConnectionException;
 import logic.exceptions.DuplicateInformationException;
 import util.ConnectionUtil;
 
@@ -15,11 +14,7 @@ public class CustomerCRUD {
     public static String createRealCustomer(RealCustomer realCustomer) throws AssignCustomerNumberException, DuplicateInformationException {
         String generatedValues = generateCustomerNumber();
         realCustomer.setRealCustomerNumber(generatedValues);
-        try {
-            RealCustomerCRUD.createRealCustomer(realCustomer);
-        } catch (DataBaseConnectionException e) {
-            e.printStackTrace();
-        }
+        RealCustomerCRUD.createRealCustomer(realCustomer);
         return realCustomer.getCustomerNumber();
     }
 
