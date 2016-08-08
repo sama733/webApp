@@ -1,18 +1,12 @@
 package logic;
 
-import DAL.CustomerCRUD;
-import DAL.RealCustomerCRUD;
-import DAL.bean.RealCustomer;
-import logic.exceptions.DateFormatException;
 import logic.exceptions.FieldIsRequiredException;
-
-import java.sql.SQLException;
 
 public class RealCustomerLogic {
 
 
     public static void validateRealCustomer(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode)
-            throws FieldIsRequiredException, DateFormatException {
+            throws FieldIsRequiredException {
         if (firstName.isEmpty()) {
             throw new FieldIsRequiredException("لطفا فیلد نام را وارد کنید.");
         }

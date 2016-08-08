@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RealCustomerCRUD {
-
+    //for generate new realcustomer
     public static RealCustomer setValuesOfNewRealCustomer(String firstName, String lastName, String fatherName, String dateOfBirth, String nationalCode)
-            throws FieldIsRequiredException, DateFormatException, AssignCustomerNumberException, DuplicateInformationException, DataBaseConnectionException {
+            throws FieldIsRequiredException, AssignCustomerNumberException, DuplicateInformationException, DataBaseConnectionException {
         RealCustomer realCustomer = new RealCustomer();
 
         realCustomer.setName(firstName);
@@ -27,6 +27,7 @@ public class RealCustomerCRUD {
         return realCustomer;
     }
 
+    //for create realcustomer
     public static void createRealCustomer(RealCustomer realCustomer) throws DuplicateInformationException {
         try {
             PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil()
@@ -112,7 +113,7 @@ public class RealCustomerCRUD {
         return preparedStatement;
     }
 
-    //for delete method
+    //for delete method & update method
     public static RealCustomer retrieveRealCustomerById(Long id) throws SQLException {
         PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil().prepareStatement("SELECT * From realcustomer WHERE id=?;");
         preparedStatement.setLong(1, id);
@@ -132,5 +133,16 @@ public class RealCustomerCRUD {
         }
         return realCustomer;
 
+    }
+
+    public static void updateRealCustomer(String name, String family, String fatherName, String birthDay, String nationalCode, Long id) throws SQLException {
+        PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil().prepareStatement(("UPDATE realcustomer SET name = ? , family =  ? ,  fathername = ?  ,  nationalcode = ?  ,  dateofbirth = ?  WHERE id=?"));
+        preparedStatement.setString(1,name);
+        preparedStatement.setString(2,family);
+        preparedStatement.setString(3,fatherName);
+        preparedStatement.setString(4,birthDay);
+        preparedStatement.setString(5,nationalCode);
+        preparedStatement.setLong(6,id);
+        preparedStatement.executeUpdate();
     }
 }

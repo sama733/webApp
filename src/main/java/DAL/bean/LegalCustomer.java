@@ -2,15 +2,15 @@ package DAL.bean;
 
 public class LegalCustomer extends Customer {
     private Long id;
-    private String nameOfCompany;
+    private String name;
     private String dateOfRegistration;
     private String economicCode;
     private String legalCustomerNumber;
 
-//    public LegalCustomer(int id, String nameOfCompany, String dateOfRegistration, String economicCode, String legalCustomerNumber) {
+//    public LegalCustomer(int id, String name, String dateOfRegistration, String economicCode, String legalCustomerNumber) {
 //
 //        this.id = id;
-//        this.nameOfCompany = nameOfCompany;
+//        this.name = name;
 //        this.dateOfRegistration = dateOfRegistration;
 //        this.economicCode = economicCode;
 //        this.legalCustomerNumber = legalCustomerNumber;
@@ -27,7 +27,7 @@ public class LegalCustomer extends Customer {
     @Override
     public String toString() {
         return "LegalCustomer{" +
-                "nameOfCompany='" + nameOfCompany + '\'' +
+                "name='" + name + '\'' +
                 ", dateOfRegistration='" + dateOfRegistration + '\'' +
                 ", economicCode='" + economicCode + '\'' +
                 ", legalCustomerNumber='" + legalCustomerNumber + '\'' +
@@ -39,15 +39,16 @@ public class LegalCustomer extends Customer {
     }
 
     public void setLegalCustomerNumber(String legalCustomerNumber) {
+        super.setCustomerNumber(legalCustomerNumber);
         this.legalCustomerNumber = legalCustomerNumber;
     }
 
-    public String getNameOfCompany() {
-        return nameOfCompany;
+    public String getName() {
+        return name;
     }
 
-    public void setNameOfCompany(String nameOfCompany) {
-        this.nameOfCompany = nameOfCompany;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDateOfRegistration() {

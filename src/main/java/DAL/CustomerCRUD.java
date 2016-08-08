@@ -1,5 +1,6 @@
 package DAL;
 
+import DAL.bean.LegalCustomer;
 import DAL.bean.RealCustomer;
 import logic.exceptions.AssignCustomerNumberException;
 import logic.exceptions.DuplicateInformationException;
@@ -45,5 +46,14 @@ public class CustomerCRUD {
         PreparedStatement preparedStatement= ConnectionUtil.getConnectionUtil().prepareStatement("DELETE  from customer where id=?;");
         preparedStatement.setLong(1,id);
         preparedStatement.executeUpdate();
+    }
+
+
+    // legal methods
+    public static String createLegalCustomer(LegalCustomer legalCustomer) throws AssignCustomerNumberException, DuplicateInformationException {
+        String generatedValues = generateCustomerNumber();
+        legalCustomer.setLegalCustomerNumber(generatedValues);
+        LegalCustomerCRUD.creatLegalCustomer(legalCustomer);
+        return legalCustomer.getCustomerNumber();
     }
 }

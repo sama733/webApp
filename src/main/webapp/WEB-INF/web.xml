@@ -8,12 +8,24 @@
         <servlet-class>servlet.CreateRealCustomerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateLegalCustomerServlet</servlet-name>
+        <servlet-class>servlet.CreatLegalCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateRealCustomerServlet</servlet-name>
+        <servlet-class>servlet.UpdateRealCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SearchRealCustomerServlet</servlet-name>
         <servlet-class>servlet.SearchRealCustomerServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteRealCustomerServlet</servlet-name>
         <servlet-class>servlet.DeleteRealCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveRealCustomerChangesServlet</servlet-name>
+        <servlet-class>servlet.SaveRealCustomerChangesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateRealCustomerServlet</servlet-name>
@@ -26,5 +38,17 @@
     <servlet-mapping>
         <servlet-name>DeleteRealCustomerServlet</servlet-name>
         <url-pattern>/DeleteRealCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRealCustomerServlet</servlet-name>
+        <url-pattern>/UpdateRealCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveRealCustomerChangesServlet</servlet-name>
+        <url-pattern>/SaveRealCustomerChangesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateLegalCustomerServlet</servlet-name>
+        <url-pattern>/CreateLegalCustomerServlet</url-pattern>
     </servlet-mapping>
 </web-app>

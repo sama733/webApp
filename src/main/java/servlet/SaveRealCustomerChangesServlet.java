@@ -1,9 +1,8 @@
 package servlet;
 
 import DAL.RealCustomerCRUD;
-import DAL.bean.RealCustomer;
 import logic.RealCustomerLogic;
-import logic.exceptions.*;
+import logic.exceptions.FieldIsRequiredException;
 import util.HTMLGenerator;
 
 import javax.servlet.ServletException;
@@ -12,14 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
-public class CreateRealCustomerServlet extends HttpServlet {
-
-
+public class SaveRealCustomerChangesServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        Long id = Long.valueOf(request.getParameter("id"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String fatherName = request.getParameter("fatherName");
@@ -27,24 +25,22 @@ public class CreateRealCustomerServlet extends HttpServlet {
         String nationalCode = request.getParameter("nationalCode");
         String outputHTML = "";
         PrintWriter out = null;
+
         try {
             RealCustomerLogic.validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
-            RealCustomer realCustomer = RealCustomerCRUD.setValuesOfNewRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
-            outputHTML = HTMLGenerator.generateRealCustomer(realCustomer);
-
+            RealCustomerCRUD.updateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim(), id);
+            outputHTML = HTMLGenerator.generateSuccess("اطلاعات مشتری با موفقیت ویرایش شد.");
         } catch (FieldIsRequiredException e) {
             outputHTML = HTMLGenerator.generateRealCustomerError("لطفا مقادیر را با دقت پر نمایید");
-        } catch (AssignCustomerNumberException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("عدم موفقیت در ساخت شماره مشتری");
-        } catch (DuplicateInformationException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("مقدار وارد شده موجود می باشد");
-        } catch (DataBaseConnectionException e) {
             e.printStackTrace();
-            outputHTML = HTMLGenerator.generateRealCustomerError("خطا در اتصال به بانک");
+        } catch (SQLException e) {
+            outputHTML = HTMLGenerator.generateRealCustomerError("خطا در پایگاه داده");
+            e.printStackTrace();
         } finally {
             response.setContentType("text/html; charset=UTF-8");
             out = response.getWriter();
             out.println(outputHTML);
         }
+
     }
 }

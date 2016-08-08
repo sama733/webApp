@@ -25,7 +25,7 @@ public class SearchRealCustomerServlet extends HttpServlet {
 
             ArrayList<RealCustomer> realCustomers = RealCustomerCRUD.retrieveRealCustomer(realCustomerNumber, firstName, lastName, nationalCode);
             if (realCustomers.size() == 0) {
-                outputHTML = HTMLGenerator.resultOfRealCustomer("مشتری با اطلاعات وارد شده وجود ندارد.");
+                outputHTML = HTMLGenerator.generateSuccess("مشتری با اطلاعات وارد شده وجود ندارد.");
             } else {
                 outputHTML = HTMLGenerator.generateRealCustomerResults(realCustomers);
             }
