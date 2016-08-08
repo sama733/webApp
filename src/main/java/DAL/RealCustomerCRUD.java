@@ -47,6 +47,7 @@ public class RealCustomerCRUD {
         }
     }
 
+    //for search method
     public static ArrayList<RealCustomer> retrieveRealCustomer(String realCustomerNumber, String firstName, String lastName, String nationalCode) {
         ArrayList<RealCustomer> realCustomers = new ArrayList<RealCustomer>();
         try {
@@ -54,6 +55,7 @@ public class RealCustomerCRUD {
             ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
                 RealCustomer realCustomer = new RealCustomer();
+                realCustomer.setId(results.getLong("id"));
                 realCustomer.setName(results.getString("name"));
                 realCustomer.setFamily(results.getString("family"));
                 realCustomer.setFatherName(results.getString("fatherName"));
@@ -70,6 +72,7 @@ public class RealCustomerCRUD {
         return realCustomers;
     }
 
+    //for create method
     private static PreparedStatement generatePreparedStatement(String realCustomerNumber, String firstName, String lastName, String nationalCode)
             throws FieldIsRequiredException {
         PreparedStatement preparedStatement = null;
@@ -77,21 +80,21 @@ public class RealCustomerCRUD {
         int counter = 1;
         List<String> parameters = new ArrayList<String>();
         if (!realCustomerNumber.trim().equals("") && realCustomerNumber != null) {
-            sqlCommand.append(" realcustomernumber=? AND ");
+            sqlCommand.append(" realcustomernumber = ? AND ");
             parameters.add(realCustomerNumber);
         }
         if (!firstName.trim().equals("") && firstName != null) {
-            sqlCommand.append(" name=? AND ");
+            sqlCommand.append(" name = ? AND ");
             parameters.add(firstName);
         }
         if (!nationalCode.trim().equals("") && nationalCode != null) {
-            sqlCommand.append(" nationalcode=? AND");
+            sqlCommand.append(" nationalcode = ? AND");
             RealCustomerLogic.validateNationalCode(nationalCode);
             parameters.add(nationalCode);
         }
 
         if (!lastName.trim().equals("") && lastName != null) {
-            sqlCommand.append(" family=? AND ");
+            sqlCommand.append(" family = ? AND ");
             parameters.add(lastName);
         }
         sqlCommand.append(" true ");
@@ -107,5 +110,27 @@ public class RealCustomerCRUD {
         }
 
         return preparedStatement;
+    }
+
+    //for delete method
+    public static RealCustomer retrieveRealCustomerById(Long id) throws SQLException {
+        PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil().prepareStatement("SELECT * From realcustomer WHERE id=?;");
+        preparedStatement.setLong(1, id);
+        ResultSet results = preparedStatement.executeQuery();
+        RealCustomer realCustomer = new RealCustomer();
+        if (results.next()) {
+            realCustomer.setId(results.getLong("id"));
+            realCustomer.setRealCustomerNumber(results.getString("realcustomernumber"));
+            realCustomer.setName(results.getString("name"));
+            realCustomer.setFamily(results.getString("family"));
+            realCustomer.setFatherName(results.getString("fathername"));
+            realCustomer.setNationalCode(results.getString("nationalcode"));
+            realCustomer.setBirthDate(results.getString("dateofbirth"));
+        }
+        if (preparedStatement != null) {
+            preparedStatement.close();
+        }
+        return realCustomer;
+
     }
 }

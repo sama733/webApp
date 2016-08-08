@@ -134,8 +134,8 @@ public class HTMLGenerator {
             stringBuilder.append("                            <td>" + realCustomer.getBirthDate() + "</td>");
             stringBuilder.append("                            <td>" + realCustomer.getNationalCode() + "</td>");
             stringBuilder.append("                            <td>" + realCustomer.getRealCustomerNumber() + "</td>");
-            stringBuilder.append("                            <td><a href= servlet/DeleteRealCustomerServlet?id=" + realCustomer.getId() + " class=form>حذف</a>");
-            stringBuilder.append("                            <a href= servlet/UpdateRealCustomerServlet?id=" + realCustomer.getId() + " class=form>ویرایش</a></td>");
+            stringBuilder.append("                            <td><a href= /DeleteRealCustomerServlet?id=" + realCustomer.getId() + " class=form >حذف</a>");
+            stringBuilder.append("                            <a href= /UpdateRealCustomerServlet?id=" + realCustomer.getId() + " class=form>ویرایش</a></td>");
         }
         stringBuilder.append("                    </table>");
         stringBuilder.append("                    <a href= htmlfile/search-real-customer.html class=form>بازگشت به صفحه قبل</a>");
@@ -149,7 +149,7 @@ public class HTMLGenerator {
         return stringBuilder.toString();
     }
 
-    public static String resultOfSearchRealCustomer(String message) {
+    public static String resultOfRealCustomer(String message) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<!DOCTYPE html>");
         stringBuilder.append("<html lang=fa>");
@@ -170,6 +170,36 @@ public class HTMLGenerator {
         stringBuilder.append("                <br>");
         stringBuilder.append("                <p>" + message + "</p>");
         stringBuilder.append("                  <a href= htmlfile/search-real-customer.html class=form>بازگشت به صفحه قبل</a>");
+        stringBuilder.append("            </div>");
+        stringBuilder.append("        </div>");
+        stringBuilder.append("    </div>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("</body>");
+        stringBuilder.append("</html>");
+        return stringBuilder.toString();
+    }
+
+    public static String generateRealCustomerDelete(String message) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<!DOCTYPE html>");
+        stringBuilder.append("<html lang=fa>");
+        stringBuilder.append("<head>");
+        stringBuilder.append("    <meta charset=UTF-8>");
+        stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
+        stringBuilder.append("    <title>عملیات موفق</title>");
+        stringBuilder.append("</head>");
+        stringBuilder.append("<body>");
+        stringBuilder.append("<div class=title>");
+        stringBuilder.append("    <h1>عملیات موفق</h1>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<div id=wrapper>");
+        stringBuilder.append("    <div class=content>");
+        stringBuilder.append("        <div class=box>");
+        stringBuilder.append("            <div class=box-in>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                <p>" + message + "</p>");
+        stringBuilder.append("               <a     href=htmlfile/search-real-customer.html class=form>بازگشت به صفحه قبل</a>");
         stringBuilder.append("            </div>");
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");

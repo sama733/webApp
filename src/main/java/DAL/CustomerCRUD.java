@@ -35,4 +35,15 @@ public class CustomerCRUD {
         return customerNumber;
     }
 
+    public static void deleteRealCustomerById(Long id) throws SQLException {
+        PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil().prepareStatement("DELETE From realcustomer WHERE id=?;");
+        preparedStatement.setLong(1,id);
+        preparedStatement.executeUpdate();
+
+    }
+    public static  void deleteCustomerById(Long id) throws SQLException {
+        PreparedStatement preparedStatement= ConnectionUtil.getConnectionUtil().prepareStatement("DELETE  from customer where id=?;");
+        preparedStatement.setLong(1,id);
+        preparedStatement.executeUpdate();
+    }
 }

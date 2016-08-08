@@ -1,7 +1,12 @@
 package logic;
 
+import DAL.CustomerCRUD;
+import DAL.RealCustomerCRUD;
+import DAL.bean.RealCustomer;
 import logic.exceptions.DateFormatException;
 import logic.exceptions.FieldIsRequiredException;
+
+import java.sql.SQLException;
 
 public class RealCustomerLogic {
 
@@ -25,10 +30,11 @@ public class RealCustomerLogic {
         }
     }
 
-
     public static void validateNationalCode(String nationalCode) throws FieldIsRequiredException {
-        if(nationalCode.length()<10){
+        if (nationalCode.length() < 10) {
             throw new FieldIsRequiredException("لطفا کد ملی را به طور صحیح وارد نمایید");
         }
     }
+
+
 }
