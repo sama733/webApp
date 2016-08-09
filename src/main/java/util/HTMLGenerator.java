@@ -307,7 +307,56 @@ public class HTMLGenerator {
         stringBuilder.append("                            <td>" + legalCustomer.getCustomerNumber() + "</td>");
         stringBuilder.append("                        </tr>");
         stringBuilder.append("                    </table>");
-        stringBuilder.append("                    <a href = legal-customer-management.html class=form>بازگشت به صفحه قبل</a>");
+        stringBuilder.append("                    <a href = htmlfile/legal-customer-management.html class=form>بازگشت به صفحه قبل</a>");
+        stringBuilder.append("            </div>");
+        stringBuilder.append("        </div>");
+        stringBuilder.append("    </div>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("</body>");
+        stringBuilder.append("</html>");
+
+        return stringBuilder.toString();
+    }
+
+    public static String generateLegalCustomerSearch(ArrayList<LegalCustomer> legalCustomers) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<!DOCTYPE html>");
+        stringBuilder.append("<html lang=fa>");
+        stringBuilder.append("<head>");
+        stringBuilder.append("    <meta charset=UTF-8>");
+        stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
+        stringBuilder.append("    <title>جستجوی مشتری</title>");
+        stringBuilder.append("</head>");
+        stringBuilder.append("<body>");
+        stringBuilder.append("<div class=title>");
+        stringBuilder.append("    <h1>جستجوی مشتری</h1>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<div id=wrapper>");
+        stringBuilder.append("    <div class=content>");
+        stringBuilder.append("        <div class=box>");
+        stringBuilder.append("            <div class=box-in>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                <p>نتایج جستجو به شرح زیر است:</p>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                    <table class=result-table>");
+        stringBuilder.append("                        <tr>");
+        stringBuilder.append("                            <td> نام شرکت </td>");
+        stringBuilder.append("                            <td> تاریخ ثبت</td>");
+        stringBuilder.append("                            <td>کد اقتصادی</td>");
+        stringBuilder.append("                            <td>شماره مشتری</td>");
+        stringBuilder.append("                            <td>انجام عملیات</td>");
+        stringBuilder.append("                        </tr>");
+        for (LegalCustomer legalCustomer : legalCustomers) {
+            stringBuilder.append("                        <tr>");
+            stringBuilder.append("                            <td>" + legalCustomer.getName() + "</td>");
+            stringBuilder.append("                            <td>" + legalCustomer.getDateOfRegistration() + "</td>");
+            stringBuilder.append("                            <td>" + legalCustomer.getEconomicCode() + "</td>");
+            stringBuilder.append("                            <td>" + legalCustomer.getCustomerNumber() + "</td>");
+            stringBuilder.append("                            <td><a href=DeleteLegalCustomerServlet?id=" + legalCustomer.getId() + " class=form>حذف</a>");
+            stringBuilder.append("                            <a href=UpdateLegalCustomerServlet?id=" + legalCustomer.getId() + " class=form>اصلاح</a></td>");
+        }
+        stringBuilder.append("                    </table>");
+        stringBuilder.append("                    <a href=search-legal-customer.html class=form>بازگشت به صفحه قبل</a>");
         stringBuilder.append("            </div>");
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");

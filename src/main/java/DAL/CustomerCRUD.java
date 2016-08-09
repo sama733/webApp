@@ -13,13 +13,13 @@ import java.sql.Statement;
 public class CustomerCRUD {
 
     public static String createRealCustomer(RealCustomer realCustomer) throws AssignCustomerNumberException, DuplicateInformationException {
-        String generatedValues = generateCustomerNumber();
+        String generatedValues = generateRealCustomerNumber();
         realCustomer.setRealCustomerNumber(generatedValues);
         RealCustomerCRUD.createRealCustomer(realCustomer);
         return realCustomer.getCustomerNumber();
     }
 
-    private static String generateCustomerNumber() throws AssignCustomerNumberException {
+    private static String generateRealCustomerNumber() throws AssignCustomerNumberException {
         String customerNumber = null;
         try {
             customerNumber = String.valueOf(System.currentTimeMillis());
@@ -31,6 +31,20 @@ public class CustomerCRUD {
             e.printStackTrace();
         }
         if (customerNumber.equals("")) {
+            throw new AssignCustomerNumberException("سیستم با مشکل مواجه شده است، مجددا تلاش نمایید");
+        }
+        return customerNumber;
+    }
+
+    private static String generateLegalCustomerNumber() throws AssignCustomerNumberException, SQLException {
+        String customerNumber = null;
+            customerNumber = String.valueOf(System.currentTimeMillis());
+            PreparedStatement preparedStatement =
+                    ConnectionUtil.getConnectionUtil().prepareStatement("insert into customer (customernumber) values(?);", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, customerNumber);
+            preparedStatement.executeUpdate();
+
+        if (customerNumber.trim().equals("")) {
             throw new AssignCustomerNumberException("سیستم با مشکل مواجه شده است، مجددا تلاش نمایید");
         }
         return customerNumber;
@@ -50,10 +64,10 @@ public class CustomerCRUD {
 
 
     // legal methods
-    public static String createLegalCustomer(LegalCustomer legalCustomer) throws AssignCustomerNumberException, DuplicateInformationException {
-        String generatedValues = generateCustomerNumber();
+    public static String createLegalCustomer(LegalCustomer legalCustomer) throws AssignCustomerNumberException, DuplicateInformationException, SQLException {
+        String generatedValues = generateLegalCustomerNumber();
         legalCustomer.setLegalCustomerNumber(generatedValues);
         LegalCustomerCRUD.creatLegalCustomer(legalCustomer);
-        return legalCustomer.getCustomerNumber();
+        return legalCustomer.getLegalCustomerNumber();
     }
 }

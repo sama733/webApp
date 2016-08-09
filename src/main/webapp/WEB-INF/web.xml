@@ -20,6 +20,10 @@
         <servlet-class>servlet.SearchRealCustomerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SearchLegalCustomerServlet</servlet-name>
+        <servlet-class>servlet.SearchLegalCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteRealCustomerServlet</servlet-name>
         <servlet-class>servlet.DeleteRealCustomerServlet</servlet-class>
     </servlet>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>SearchRealCustomerServlet</servlet-name>
         <url-pattern>/SearchRealCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchLegalCustomerServlet</servlet-name>
+        <url-pattern>/SearchLegalCustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteRealCustomerServlet</servlet-name>

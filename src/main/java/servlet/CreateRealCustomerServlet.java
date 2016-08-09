@@ -27,6 +27,7 @@ public class CreateRealCustomerServlet extends HttpServlet {
         String nationalCode = request.getParameter("nationalCode");
         String outputHTML = "";
         PrintWriter out = null;
+
         try {
             RealCustomerLogic.validateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());
             RealCustomer realCustomer = RealCustomerCRUD.setValuesOfNewRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim());

@@ -7,14 +7,6 @@ public class LegalCustomer extends Customer {
     private String economicCode;
     private String legalCustomerNumber;
 
-//    public LegalCustomer(int id, String name, String dateOfRegistration, String economicCode, String legalCustomerNumber) {
-//
-//        this.id = id;
-//        this.name = name;
-//        this.dateOfRegistration = dateOfRegistration;
-//        this.economicCode = economicCode;
-//        this.legalCustomerNumber = legalCustomerNumber;
-//    }
 
     public Long getId() {
         return id;
@@ -22,16 +14,6 @@ public class LegalCustomer extends Customer {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "LegalCustomer{" +
-                "name='" + name + '\'' +
-                ", dateOfRegistration='" + dateOfRegistration + '\'' +
-                ", economicCode='" + economicCode + '\'' +
-                ", legalCustomerNumber='" + legalCustomerNumber + '\'' +
-                '}';
     }
 
     public String getLegalCustomerNumber() {
