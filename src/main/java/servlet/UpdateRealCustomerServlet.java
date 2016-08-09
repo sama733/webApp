@@ -22,9 +22,9 @@ public class UpdateRealCustomerServlet extends HttpServlet {
 
         try {
             RealCustomer realCustomer = RealCustomerCRUD.retrieveRealCustomerById(realCustomerID);
-            outputHTML = HTMLGenerator.generateUpdatePage(realCustomer);
+            outputHTML = HTMLGenerator.generateUpdateRealCustomer(realCustomer);
         } catch (SQLException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError(e.getMessage());
+            outputHTML = HTMLGenerator.generateError(e.getMessage());
             e.printStackTrace();
         }
 

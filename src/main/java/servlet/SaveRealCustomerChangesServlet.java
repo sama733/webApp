@@ -31,10 +31,10 @@ public class SaveRealCustomerChangesServlet extends HttpServlet {
             RealCustomerCRUD.updateRealCustomer(firstName.trim(), lastName.trim(), fatherName.trim(), dateOfBirth.trim(), nationalCode.trim(), id);
             outputHTML = HTMLGenerator.generateSuccess("اطلاعات مشتری با موفقیت ویرایش شد.");
         } catch (FieldIsRequiredException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("لطفا مقادیر را با دقت پر نمایید");
+            outputHTML = HTMLGenerator.generateError("لطفا مقادیر را با دقت پر نمایید");
             e.printStackTrace();
         } catch (SQLException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("خطا در پایگاه داده");
+            outputHTML = HTMLGenerator.generateError("خطا در پایگاه داده");
             e.printStackTrace();
         } finally {
             response.setContentType("text/html; charset=UTF-8");

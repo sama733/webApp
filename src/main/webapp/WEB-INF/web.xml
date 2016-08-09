@@ -16,6 +16,10 @@
         <servlet-class>servlet.UpdateRealCustomerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UpdateLegalCustomerServlet</servlet-name>
+        <servlet-class>servlet.UpdateLegalCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SearchRealCustomerServlet</servlet-name>
         <servlet-class>servlet.SearchRealCustomerServlet</servlet-class>
     </servlet>
@@ -28,8 +32,16 @@
         <servlet-class>servlet.DeleteRealCustomerServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteLegalCustomerServlet</servlet-name>
+        <servlet-class>servlet.DeleteLegalCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SaveRealCustomerChangesServlet</servlet-name>
         <servlet-class>servlet.SaveRealCustomerChangesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveLegalCustomerChangesServlet</servlet-name>
+        <servlet-class>servlet.SaveLegalCustomerChangesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateRealCustomerServlet</servlet-name>
@@ -48,12 +60,24 @@
         <url-pattern>/DeleteRealCustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DeleteLegalCustomerServlet</servlet-name>
+        <url-pattern>/DeleteLegalCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UpdateRealCustomerServlet</servlet-name>
         <url-pattern>/UpdateRealCustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UpdateLegalCustomerServlet</servlet-name>
+        <url-pattern>/UpdateLegalCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SaveRealCustomerChangesServlet</servlet-name>
         <url-pattern>/SaveRealCustomerChangesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveLegalCustomerChangesServlet</servlet-name>
+        <url-pattern>/SaveLegalCustomerChangesServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateLegalCustomerServlet</servlet-name>

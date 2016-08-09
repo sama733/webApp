@@ -7,7 +7,7 @@ import DAL.bean.RealCustomer;
 import java.util.ArrayList;
 
 public class HTMLGenerator {
-    public static String generateRealCustomerError(String message) {
+    public static String generateError(String message) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<!DOCTYPE html>");
         stringBuilder.append("<html lang=fa>");
@@ -157,7 +157,7 @@ public class HTMLGenerator {
         stringBuilder.append("<head>");
         stringBuilder.append("    <meta charset=UTF-8>");
         stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
-        stringBuilder.append("    <title>عملیات موفق</title>");
+        stringBuilder.append("    <title>نتیجه عملیات</title>");
         stringBuilder.append("</head>");
         stringBuilder.append("<body>");
         stringBuilder.append("<div class=title>");
@@ -187,7 +187,7 @@ public class HTMLGenerator {
         stringBuilder.append("<head>");
         stringBuilder.append("    <meta charset=UTF-8>");
         stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
-        stringBuilder.append("    <title>عملیات موفق</title>");
+        stringBuilder.append("    <title>نتیجه عملیات</title>");
         stringBuilder.append("</head>");
         stringBuilder.append("<body>");
         stringBuilder.append("<div class=title>");
@@ -210,7 +210,7 @@ public class HTMLGenerator {
         return stringBuilder.toString();
     }
 
-    public static String generateUpdatePage(RealCustomer realCustomer) {
+    public static String generateUpdateRealCustomer(RealCustomer realCustomer) {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<!DOCTYPE html>");
@@ -351,12 +351,64 @@ public class HTMLGenerator {
             stringBuilder.append("                            <td>" + legalCustomer.getName() + "</td>");
             stringBuilder.append("                            <td>" + legalCustomer.getDateOfRegistration() + "</td>");
             stringBuilder.append("                            <td>" + legalCustomer.getEconomicCode() + "</td>");
-            stringBuilder.append("                            <td>" + legalCustomer.getCustomerNumber() + "</td>");
-            stringBuilder.append("                            <td><a href=DeleteLegalCustomerServlet?id=" + legalCustomer.getId() + " class=form>حذف</a>");
-            stringBuilder.append("                            <a href=UpdateLegalCustomerServlet?id=" + legalCustomer.getId() + " class=form>اصلاح</a></td>");
+            stringBuilder.append("                            <td>" + legalCustomer.getLegalCustomerNumber() + "</td>");
+            stringBuilder.append("                            <td><a href=/DeleteLegalCustomerServlet?id=" + legalCustomer.getId() + " class=form>حذف</a>");
+            stringBuilder.append("                            <a href=/UpdateLegalCustomerServlet?id=" + legalCustomer.getId() + " class=form>اصلاح</a></td>");
         }
         stringBuilder.append("                    </table>");
-        stringBuilder.append("                    <a href=search-legal-customer.html class=form>بازگشت به صفحه قبل</a>");
+        stringBuilder.append("                    <a href=htmlfile/search-legal-customer.html class=form>بازگشت به صفحه قبل</a>");
+        stringBuilder.append("            </div>");
+        stringBuilder.append("        </div>");
+        stringBuilder.append("    </div>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("</body>");
+        stringBuilder.append("</html>");
+
+        return stringBuilder.toString();
+    }
+
+    public static String generateUpdateLegalCustomer(LegalCustomer legalCustomer) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<!DOCTYPE html>");
+        stringBuilder.append("<html lang=fa>");
+        stringBuilder.append("<head>");
+        stringBuilder.append("    <meta charset=UTF-8>");
+        stringBuilder.append("    <link href=/htmlfile/cssfile/styleSheet.css rel=stylesheet>");
+        stringBuilder.append("    <title>ویرایش اطلاعات مشتری</title>");
+        stringBuilder.append("</head>");
+        stringBuilder.append("<body>");
+        stringBuilder.append("<div class=title>");
+        stringBuilder.append("    <h1>ویرایش اطلاعات مشتری</h1>");
+        stringBuilder.append("</div>");
+        stringBuilder.append("<div id=wrapper>");
+        stringBuilder.append("    <div class=content>");
+        stringBuilder.append("        <div class=box>");
+        stringBuilder.append("            <div class=box-in>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("                 <form action='/SaveLegalCustomerChangesServlet'>");
+        stringBuilder.append("                <p>اطلاعات مشتری حقیقی :</p>");
+        stringBuilder.append("                <br>");
+        stringBuilder.append("<input type='hidden' name='id' value='" + legalCustomer.getId() + "'>");
+        stringBuilder.append("                    <table>");
+        stringBuilder.append("                        <tr>");
+        stringBuilder.append("                            <td>شماره مشتری</td>");
+        stringBuilder.append("                            <td><input type='text' name='customerNumber' value='" + legalCustomer.getLegalCustomerNumber() + "' readonly ></td>");
+        stringBuilder.append("                        </tr>");
+        stringBuilder.append("                        <tr>");
+        stringBuilder.append("                            <td> نام شرکت </td>");
+        stringBuilder.append("                            <td><input type='text' name='Name' value='" + legalCustomer.getName() + "'></td>");
+        stringBuilder.append("                        </tr>");
+        stringBuilder.append("                        <tr>");
+        stringBuilder.append("                            <td> تاریخ ثبت</td>");
+        stringBuilder.append("                            <td><input type='text' name='dateOfRegistration' value='" + legalCustomer.getDateOfRegistration() + "'></td>");
+        stringBuilder.append("                        </tr>");
+        stringBuilder.append("                        <tr>");
+        stringBuilder.append("                            <td>کد اقتصادی</td>");
+        stringBuilder.append("                            <td><input type='text' name='economicCode' value='" + legalCustomer.getEconomicCode() + "'></td>");
+        stringBuilder.append("                        </tr>");
+        stringBuilder.append("                    </table>");
+        stringBuilder.append("                    <input type='submit' class='button' value='ذخیره تغییرات'>");
+        stringBuilder.append("                    </form>");
         stringBuilder.append("            </div>");
         stringBuilder.append("        </div>");
         stringBuilder.append("    </div>");

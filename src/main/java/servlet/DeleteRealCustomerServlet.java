@@ -15,6 +15,12 @@ import java.sql.SQLException;
 
 public class DeleteRealCustomerServlet extends HttpServlet {
 
+    public static void deleteById(Long id) throws SQLException {
+        RealCustomer realCustomer = RealCustomerCRUD.retrieveRealCustomerById(id);
+        CustomerCRUD.deleteRealCustomerById(realCustomer.getId());
+        CustomerCRUD.deleteCustomerById(realCustomer.getId());
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,17 +30,12 @@ public class DeleteRealCustomerServlet extends HttpServlet {
         try {
             deleteById(realCustomerID);
         } catch (SQLException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("خطا در حذف مشتری.");
+            outputHTML = HTMLGenerator.generateError("خطا در حذف مشتری.");
             e.printStackTrace();
         }
         outputHTML = HTMLGenerator.generateRealCustomerDelete("مشتری با موفقیت حذف شد.");
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println(outputHTML);
-    }
-    public static void deleteById(Long id) throws SQLException {
-        RealCustomer realCustomer = RealCustomerCRUD.retrieveRealCustomerById(id);
-        CustomerCRUD.deleteRealCustomerById(realCustomer.getId());
-        CustomerCRUD.deleteCustomerById(realCustomer.getId());
     }
 }

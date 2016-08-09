@@ -33,14 +33,14 @@ public class CreatLegalCustomerServlet extends HttpServlet {
             outputHTML = HTMLGenerator.generateLegalCustomer(legalCustomer);
 
         } catch (FieldIsRequiredException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("لطفا مقادیر را با دقت پر نمایید");
+            outputHTML = HTMLGenerator.generateError("لطفا مقادیر را با دقت پر نمایید");
         } catch (AssignCustomerNumberException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("عدم موفقیت در ساخت شماره مشتری");
+            outputHTML = HTMLGenerator.generateError("عدم موفقیت در ساخت شماره مشتری");
         } catch (DuplicateInformationException e) {
-            outputHTML = HTMLGenerator.generateRealCustomerError("مقدار وارد شده موجود می باشد");
+            outputHTML = HTMLGenerator.generateError("مقدار وارد شده موجود می باشد");
         } catch (DataBaseConnectionException e) {
             e.printStackTrace();
-            outputHTML = HTMLGenerator.generateRealCustomerError("خطا در اتصال به بانک");
+            outputHTML = HTMLGenerator.generateError("خطا در اتصال به بانک");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

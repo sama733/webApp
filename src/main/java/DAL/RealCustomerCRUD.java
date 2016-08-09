@@ -23,28 +23,30 @@ public class RealCustomerCRUD {
         realCustomer.setBirthDate(dateOfBirth);
         realCustomer.setNationalCode(nationalCode);
         String customerNumber = CustomerCRUD.createRealCustomer(realCustomer);
-        realCustomer.setCustomerNumber(customerNumber);
+        realCustomer.setRealCustomerNumber(customerNumber);
         return realCustomer;
     }
 
     //for create realcustomer
-    public static void createRealCustomer(RealCustomer realCustomer) throws DuplicateInformationException {
+    public static void createRealCustomer(RealCustomer realCustomer) throws DataBaseConnectionException
+    {
         try {
             PreparedStatement preparedStatement = ConnectionUtil.getConnectionUtil()
                     .prepareStatement(
-                            "INSERT INTO realcustomer( name , family ,fathername,dateofbirth,nationalcode,realcustomernumber)" +
-                                    " VALUES ( ?, ?, ?, ?, ?, ?);");
+                            "INSERT INTO realcustomer( name , family ,fathername,dateofbirth,nationalcode,realcustomernumber, id)" +
+                                    " VALUES ( ?, ?, ?, ?, ?, ?, ?);");
 
             preparedStatement.setString(1, realCustomer.getName());
             preparedStatement.setString(2, realCustomer.getFamily());
             preparedStatement.setString(3, realCustomer.getFatherName());
             preparedStatement.setString(4, realCustomer.getBirthDate());
             preparedStatement.setString(5, realCustomer.getNationalCode());
-            preparedStatement.setString(6, realCustomer.getCustomerNumber());
+            preparedStatement.setString(6, realCustomer.getRealCustomerNumber());
+            preparedStatement.setString(7, String.valueOf(CustomerCRUD.getCustomerByCustomerNumber(Long.parseLong(realCustomer.getRealCustomerNumber()))));
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {
-            throw new DuplicateInformationException(e.getMessage() + "مقدار وارد شده موجود می باشد");
+            throw new DataBaseConnectionException(e.getMessage() + "خطا در ورود اطلاعات");
         }
     }
 
